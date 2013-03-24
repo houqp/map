@@ -1,12 +1,12 @@
 <?php
 
 /**
-* ownCloud - App Template plugin
+* ownCloud - Map
 *
-* @author Frank Karlitschek
-* @author Florian Hülsmann
-* @copyright 2011 Frank Karlitschek karlitschek@kde.org
-* @copyright 2012 Florian Hülsmann fh@cbix.de
+* @author Brice Maron
+* @author Qingping Hou
+* @copyright 2013 Brice Maron merzhin@gmail.com
+* @copyright 2013 Qingping Hou qingping.hou@gmail.com
 *
 * This library is free software; you can redistribute it and/or
 * modify it under the terms of the GNU AFFERO GENERAL PUBLIC LICENSE
@@ -23,15 +23,29 @@
 *
 */
 
-OCP\App::addNavigationEntry( array(
-	'id' => 'map',
-	'order' => 74,
-	'href' => OCP\Util::linkTo( 'map', 'index.php' ),
-	'icon' => OCP\Util::imagePath( 'map', 'example.png' ),
-	'name' => 'Map'
-));
 
-OC::$CLASSPATH['OC_MapItem'] = 'map/lib/map_item.php';
-OC::$CLASSPATH['OC_Map'] = 'map/lib/map.php';
-OC::$CLASSPATH['OC_Generic_Map_Loader'] = 'map/lib/generic_map_loader.php';
-OC::$CLASSPATH['OC_MyPlace_Loader'] = 'map/lib/generic_map_loader.php';
+namespace OCA\Map;
+
+$api = new \OCA\AppFramework\Core\API('map');
+
+$api->addNavigationEntry(array(
+
+  // the string under which your app will be referenced in owncloud
+  'id' => $api->getAppName(),
+
+  // sorting weight for the navigation. The higher the number, the higher
+  // will it be listed in the navigation
+  'order' => 10,
+
+  // the route that will be shown on startup
+  'href' => $api->linkToRoute('map_index'),
+
+  // the icon that will be shown in the navigation
+  // this file needs to exist in img/example.png
+  'icon' => $api->imagePath('example.png'),
+
+  // the title of your application. This will be used in the
+  // navigation or on the settings page of your app
+  'name' => $api->getTrans()->t('The Map app for ownCloud')
+
+));

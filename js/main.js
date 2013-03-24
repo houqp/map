@@ -19,7 +19,7 @@ function displaySearchAddress(data) {
 	setCenter(markerLocation);
 	var marker = new L.Marker(markerLocation);
 	map.addLayer(marker);
-	marker.bindPopup("<b>Hello world!</b><br />I am a popup.");//.openPopup();
+	marker.bindPopup("<b>Hello world!</b><br />I am a popup.").openPopup();
 }
 
 function setCenter(markerLocation) {
